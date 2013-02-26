@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/oval.css" media="all">
+    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/latlon.js"></script>
+    <script src="js/live.js"></script>
+</head>
+<body>
+    <h1>Where's Matt?</h1>
+    <div class="locations"></div>
+    <div class="data-out"></div>
+
+
+    <div class="timeline-container">
+        <div class="timeline-data">
+            Centennial Hall
+        </div>
+        <div class="timeline-data">
+            Coffman Union
+        </div>
+        <div class="timeline-data">
+            Comstock Hall
+        </div>
+        <div class="timeline-data">
+            Keller Hall
+        </div>
+        <div class="timeline-data">
+            Stadium View
+        </div>
+        <div class="timeline-data">
+            Wash Ave Bridge
+        </div>
+        <div class="timeline-data">
+            Mondale Hall
+        </div>
+    </div>
+
+    <script>
+
+        var maxDistToValidateLoc = .094697 // miles = 500 ft
+
+        var locations = [
+            {
+                name: "Stadium View",
+                coordinates: {
+                    latitude: 44.971599,
+                    longitude: -93.221807
+                }
+            },
+            {
+                name: "Keller Hall",
+                coordinates: {
+                    latitude: 44.974650,
+                    longitude: -93.232460
+                }
+            },
+            {
+                name: "Mondale Hall",
+                coordinates: {
+                    latitude: 44.97328,
+                    longitude: -93.24436
+                }
+            },
+            {
+                name: "Washington Ave Bridge",
+                coordinates: {
+                    latitude: 44.97316,
+                    longitude: -93.23921
+                }
+            },
+            {
+                name: "Centennial Hall",
+                coordinates: {
+                    latitude: 44.97191,
+                    longitude: -93.22952
+                }
+            },
+            {
+                name: "Coffman Memorial Union",
+                coordinates: {
+                    latitude: 44.97284,
+                    longitude: -93.23539
+                }
+            },
+            {
+                name: "Comstock Hall",
+                coordinates: {
+                    latitude: 44.97232,
+                    longitude: -93.23696
+                }
+            }
+        ];
+        
+        function distKmLatLon(lat1, lon1, lat2, lon2) {
+            var p1 = new LatLon(lat1, lon1);
+            var p2 = new LatLon(lat2, lon2);
+            return p1.distanceTo(p2);
+        }
+
+        function distMiLatLon(lat1, lon1, lat2, lon2) {
+            var rMi = 3963.1676; // earth's radius in miles
+            var p1 = new LatLon(lat1, lon1, rMi);
+            var p2 = new LatLon(lat2, lon2, rMi);
+            return p1.distanceTo(p2);
+        }
+
+        // $('.data-out').text('Fetching data...');
+
+        // get Latitude data as JSON
+        var latitudeUrl = 'https://latitude.google.com/latitude/apps/badge/api?user=6143439630895179517&type=json';
+        // use Yahoo YQL to proxy the JSON into JSONP
+        var yahooYqlUrl = 'http://query.yahooapis.com/v1/public/yql?callback=?'
+
+        $.getJSON(yahooYqlUrl, {
+            q: 'select * from json where url="' + latitudeUrl + '"',
+            format: 'json'
+        }, function(response) {
+            var data = response.query.results.json;
+            console.log('Data received!');
+            var currLongitude = parseFloat(data.features.geometry.coordinates[0]);
+            var currLatitude = parseFloat(data.features.geometry.coordinates[1]);
+            var locName = data.features.properties.reverseGeocode;
+            // $('.data-out').text(currLatitude + ', ' + currLongitude + ' (' + locName + ')');
+
+            var locSorted = [];
+
+            // use the script from http://www.movable-type.co.uk/scripts/latlong.html to calculate distance
+            for (var i = 0; i < locations.length; i++) {
+                loc = locations[i];
+                locLatitude = loc.coordinates.latitude;
+                locLongitude = loc.coordinates.longitude;
+                var distance = distMiLatLon(currLatitude, currLongitude, locLatitude, locLongitude)
+                locSorted.push({
+                    locObj: loc,
+                    distance: distance
+                });
+            };
+            
+            // sort locations by increasing distance from current Google Latitude coords
+            locSorted.sort(function(item1, item2) {return item1.distance - item2.distance});
+
+            var validatedLoc = null;
+
+            for (var i = 0; i < locSorted.length; i++) {
+                var loc = locSorted[i];
+                var dist = loc.distance;
+                var name = loc.locObj.name;
+                if (dist < maxDistToValidateLoc) {
+                    validatedLoc = name;
+                    name = name.toUpperCase();
+                }
+                // $('.data-out').append('<br/>' + dist + ' mi: ' + name);
+            };
+
+            console.log('Validated location:', validatedLoc);
+            
+            var dataBoxes = $('.timeline-data');
+            for (var i = 0; i < dataBoxes.length; i++) {
+                var dataBox = dataBoxes[i];
+                var jqDataBox = $(dataBox);
+                var dataBoxText = jqDataBox.text().trim();
+                if (dataBoxText.indexOf(validatedLoc) > -1) {
+                    jqDataBox.append('<div class="face" />');
+                    $('.face').fadeIn('slow');
+                }
+            };
+        });
+        
+    </script>
+</body>
+</html>

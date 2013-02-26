@@ -1,0 +1,55 @@
+$bright-grey: #bbb
+$light-grey: #999
+$darkish-grey: #404040
+$dark-grey: #333
+
+$oval-width: 100px
+$oval-aspect-ratio: 1.4
+// height = width * aspect-ratio
+// if aspect-ratio = 1: circle
+//                 > 1: vertical oval
+//                 < 1: horizontal oval
+
+body
+  font-family: 'Source Sans Pro', 'Helvetica', sans-serif
+  color: $bright-grey
+  background-color: $dark-grey
+
+h1
+  font-family: 'Bitter', serif
+  text-align: center
+  font-size: 64px
+
+.face
+  display: none
+  position: relative
+  left: -5px
+  top: -70px
+  background-image: url('/img/matt.jpg')
+  background-color: $light-grey
+  width: $oval-width
+  height: $oval-width * $oval-aspect-ratio
+  border: 3px solid $light-grey
+  border-radius: $oval-width unquote('/') ($oval-width * $oval-aspect-ratio)
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .5)
+  -webkit-transition: top 0.5s
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275) // easeOutBack
+
+.face:hover
+  top: 10px
+
+.timeline-container
+  margin-left: auto
+  margin-right: auto
+  text-align: center
+  background: $darkish-grey
+
+.timeline-data
+  display: inline-block
+  width: 100px
+  height: 40px
+  padding: 10px
+  margin-top: 5px
+  margin-bottom: 5px
+  border-right: 1px solid $dark-grey
+  vertical-align: middle
