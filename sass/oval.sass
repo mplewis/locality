@@ -37,11 +37,13 @@ h1
   border: 3px solid $light-grey
   border-radius: $oval-width unquote('/') ($oval-width * $oval-aspect-ratio)
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .5)
-  -webkit-transition: top 0.5s
-  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275) // easeOutBack
+  -webkit-transition: top 0.4s // hover exit
+  -webkit-transition-timing-function: cubic-bezier(0.330, 1.045, 0.605, 1.380) // easeOutBack
 
 .face:hover
   top: 5px
+  -webkit-transition: top 0.3s // hover enter
+  -webkit-transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000) // easeOutQuart
 
 .timeline-container
   margin-left: auto
