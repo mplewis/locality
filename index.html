@@ -17,29 +17,7 @@
     <div class="data-out"></div>
 
 
-    <div class="timeline-container">
-        <div class="timeline-data">
-            <p>Centennial Hall</p>
-        </div>
-        <div class="timeline-data">
-            <p>Coffman Union</p>
-        </div>
-        <div class="timeline-data">
-            <p>Comstock Hall</p>
-        </div>
-        <div class="timeline-data">
-            <p>Keller Hall</p>
-        </div>
-        <div class="timeline-data">
-            <p>Stadium View</p>
-        </div>
-        <div class="timeline-data">
-            <p>Wash Ave Bridge</p>
-        </div>
-        <div class="timeline-data">
-            <p>Mondale Hall</p>
-        </div>
-    </div>
+    <div class="timeline-container"></div>
 
     <script>
 
@@ -82,7 +60,7 @@
                 }
             },
             {
-                name: "Coffman Memorial Union",
+                name: "Coffman Union",
                 coordinates: {
                     latitude: 44.97284,
                     longitude: -93.23539
@@ -112,10 +90,17 @@
 
         // $('.data-out').text('Fetching data...');
 
-        // get Latitude data as JSON
+        // get Latitude data as JSONappend
         var latitudeUrl = 'https://latitude.google.com/latitude/apps/badge/api?user=6143439630895179517&type=json';
         // use Yahoo YQL to proxy the JSON into JSONP
         var yahooYqlUrl = 'http://query.yahooapis.com/v1/public/yql?callback=?'
+
+        var timeline = $('.timeline-container');
+
+        for (var i = 0; i < locations.length; i++) {
+            var loc = locations[i];
+            timeline.append('<div class="timeline-data"><p>' + loc.name + '</p></div>');
+        };
 
         $.getJSON(yahooYqlUrl, {
             q: 'select * from json where url="' + latitudeUrl + '"',

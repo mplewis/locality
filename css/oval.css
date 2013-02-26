@@ -16,7 +16,7 @@ h1 {
 .face {
   display: none;
   position: relative;
-  left: -5px;
+  left: -3px;
   top: -70px;
   background-image: url("/img/matt.jpg");
   background-color: #999999;
@@ -29,7 +29,7 @@ h1 {
   -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
 .face:hover {
-  top: 10px; }
+  top: 20px; }
 
 .timeline-container {
   margin-left: auto;
