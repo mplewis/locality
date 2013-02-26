@@ -22,6 +22,7 @@
     <script>
 
         var maxDistToValidateLoc = .094697 // miles = 500 ft
+        var somewhereElseTitle = 'Somewhere else!';
 
         var locations = [
             {
@@ -32,7 +33,7 @@
                 }
             },
             {
-                name: "Keller Hall",
+                name: "Kenneth H. Keller Hall",
                 coordinates: {
                     latitude: 44.974650,
                     longitude: -93.232460
@@ -43,13 +44,6 @@
                 coordinates: {
                     latitude: 44.97328,
                     longitude: -93.24436
-                }
-            },
-            {
-                name: "Washington Ave Bridge",
-                coordinates: {
-                    latitude: 44.97316,
-                    longitude: -93.23921
                 }
             },
             {
@@ -102,6 +96,8 @@
             timeline.append('<div class="timeline-data"><p>' + loc.name + '</p></div>');
         };
 
+        timeline.append('<div class="timeline-data no-right-border somewhere-else"><p>' + somewhereElseTitle + '</p></div>');
+
         $.getJSON(yahooYqlUrl, {
             q: 'select * from json where url="' + latitudeUrl + '"',
             format: 'json'
@@ -130,7 +126,7 @@
             // sort locations by increasing distance from current Google Latitude coords
             locSorted.sort(function(item1, item2) {return item1.distance - item2.distance});
 
-            var validatedLoc = null;
+            // var validatedLoc = null; // for testing "somewhere else"
 
             for (var i = 0; i < locSorted.length; i++) {
                 var loc = locSorted[i];
@@ -143,18 +139,26 @@
                 // $('.data-out').append('<br/>' + dist + ' mi: ' + name);
             };
 
+            validatedLoc = null;
+
             console.log('Validated location:', validatedLoc);
             
-            var dataBoxes = $('.timeline-data');
-            for (var i = 0; i < dataBoxes.length; i++) {
-                var dataBox = dataBoxes[i];
-                var jqDataBox = $(dataBox);
-                var dataBoxText = jqDataBox.text().trim();
-                if (dataBoxText.indexOf(validatedLoc) > -1) {
-                    jqDataBox.append('<div class="face" />');
-                    $('.face').fadeIn('slow');
-                }
-            };
+            if (validatedLoc == null) {
+                var jqSomewhereElseBox = $($('.somewhere-else'));
+                jqSomewhereElseBox.append('<div class="face" />');
+                $('.face').fadeIn('slow');
+            } else {
+                var dataBoxes = $('.timeline-data');
+                for (var i = 0; i < dataBoxes.length; i++) {
+                    var dataBox = dataBoxes[i];
+                    var jqDataBox = $(dataBox);
+                    var dataBoxText = jqDataBox.text().trim();
+                    if (dataBoxText.indexOf(validatedLoc) > -1) {
+                        jqDataBox.append('<div class="face" />');
+                        $('.face').fadeIn('slow');
+                    }
+                };
+            }
         });
         
     </script>

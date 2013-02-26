@@ -17,7 +17,7 @@ h1 {
   display: none;
   position: relative;
   left: -3px;
-  top: -70px;
+  top: -95px;
   background-image: url("/img/matt.jpg");
   background-color: #999999;
   width: 100px;
@@ -29,7 +29,7 @@ h1 {
   -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
 .face:hover {
-  top: 20px; }
+  top: 5px; }
 
 .timeline-container {
   margin-left: auto;
@@ -49,3 +49,6 @@ h1 {
   margin-bottom: 5px;
   border-right: 1px solid #333333;
   vertical-align: middle; }
+
+.no-right-border {
+  border-right: none; }
