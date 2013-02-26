@@ -121,12 +121,13 @@
                     locObj: loc,
                     distance: distance
                 });
+                console.log(loc, distance);
             };
             
             // sort locations by increasing distance from current Google Latitude coords
             locSorted.sort(function(item1, item2) {return item1.distance - item2.distance});
 
-            // var validatedLoc = null; // for testing "somewhere else"
+            var validatedLoc = null;
 
             for (var i = 0; i < locSorted.length; i++) {
                 var loc = locSorted[i];
@@ -139,7 +140,7 @@
                 // $('.data-out').append('<br/>' + dist + ' mi: ' + name);
             };
 
-            validatedLoc = null;
+            // validatedLoc = null; // for testing "somewhere else"
 
             console.log('Validated location:', validatedLoc);
             
