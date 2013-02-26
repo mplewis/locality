@@ -9,10 +9,42 @@ p {
   font-size: 18px;
   line-height: 20px; }
 
+.messi-title {
+  font-family: "Source Sans Pro", "Helvetica", sans-serif; }
+
+.messi-content {
+  color: #333333;
+  font-family: "Source Sans Pro", "Helvetica", sans-serif; }
+
 h1 {
   font-family: "Bitter", serif;
   text-align: center;
-  font-size: 64px; }
+  font-size: 64px;
+  margin-top: 40px;
+  margin-bottom: -20px; }
+
+h2 {
+  font-family: "Bitter", serif;
+  font-size: 24px;
+  margin-bottom: 60px; }
+
+a {
+  color: #dddddd; }
+
+.container {
+  min-height: 100%;
+  position: relative; }
+
+.content {
+  padding-bottom: 40px; }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px; }
 
 .face {
   display: none;
