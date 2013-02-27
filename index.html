@@ -177,15 +177,7 @@
             new Messi(messiHtml, {title: 'Google Latitude', modal: true});
         });
 
-        $('.timeline-data').hover(function() {
-            console.log('hoveron');
-            $('.face').addClass('face-hover');
-        }, function() {
-            console.log('hoveroff');
-            $('.face').removeClass('face-hover');
-        });
-
-        $('.face').hover(function() {
+        $('.timeline-data, .face').hover(function() {
             console.log('hoveron');
             $('.face').addClass('face-hover');
         }, function() {
