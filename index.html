@@ -176,6 +176,22 @@
             var messiHtml = '<iframe src="http://latitude.google.com/latitude/apps/badge/api?user=6143439630895179517&type=iframe&maptype=roadmap" width="480" height="400" frameborder="0"></iframe>';
             new Messi(messiHtml, {title: 'Google Latitude', modal: true});
         });
+
+        $('.timeline-data').hover(function() {
+            console.log('hoveron');
+            $('.face').addClass('face-hover');
+        }, function() {
+            console.log('hoveroff');
+            $('.face').removeClass('face-hover');
+        });
+
+        $('.face').hover(function() {
+            console.log('hoveron');
+            $('.face').addClass('face-hover');
+        }, function() {
+            console.log('hoveroff');
+            $('.face').removeClass('face-hover');
+        });
         
     </script>
 </body>

@@ -62,7 +62,7 @@ a {
   -webkit-transition: top 0.4s;
   -webkit-transition-timing-function: cubic-bezier(0.33, 1.045, 0.605, 1.38); }
 
-.face:hover {
+.face-hover {
   top: 5px;
   -webkit-transition: top 0.3s;
   -webkit-transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); }
