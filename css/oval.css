@@ -97,8 +97,6 @@ a {
   width: 250px;
   color: #333333;
   background: #dddddd;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
   border-radius: 10px; }
 
 .bubble-twitter p {
@@ -114,6 +112,3 @@ a {
   border-bottom-color: #dddddd;
   display: block;
   width: 0; }
-
-.bubble-twitter + p {
-  padding-left: 15px; }

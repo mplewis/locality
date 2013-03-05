@@ -8,6 +8,9 @@ $footer-height: 40px
 $sans-serif: 'Source Sans Pro', 'Helvetica', sans-serif
 $serif: 'Bitter', serif
 
+$shadow-size: 0px 2px 6px 0px rgba(0, 0, 0, .5)
+$rounded-radius: 10px
+
 $oval-width: 100px
 $oval-aspect-ratio: 1.4
 // height = width * aspect-ratio
@@ -75,7 +78,7 @@ a
   height: $oval-width * $oval-aspect-ratio
   border: 3px solid $light-grey
   border-radius: $oval-width unquote('/') ($oval-width * $oval-aspect-ratio)
-  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .5)
+  box-shadow: $shadow-size
   -webkit-transition: top 0.4s // hover exit
   -webkit-transition-timing-function: cubic-bezier(0.330, 1.045, 0.605, 1.380) // easeOutBack
 
@@ -91,8 +94,8 @@ a
   // width: 90%
   text-align: center
   background: $darkish-grey
-  border-radius: 10px
-  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .5)
+  border-radius: $rounded-radius
+  box-shadow: $shadow-size
 
 .timeline-data
   display: inline-block
@@ -115,9 +118,7 @@ a
   width: 250px
   color: $dark-grey
   background: $brightest-grey
-  -webkit-border-radius: 10px
-  -moz-border-radius: 10px
-  border-radius: 10px
+  border-radius: $rounded-radius
 
 .bubble-twitter p
   font-size: 28px
@@ -132,6 +133,3 @@ a
   border-bottom-color: $brightest-grey
   display: block
   width: 0
-
-.bubble-twitter + p
-  padding-left: 15px
