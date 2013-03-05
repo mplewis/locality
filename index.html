@@ -32,8 +32,12 @@
 
     <script>
 
-        var maxDistToValidateLoc = .094697 // miles = 500 ft
+        var maxDistToValidateLoc = .094697; // miles = 500 ft
         var somewhereElseTitle = 'Somewhere else!';
+
+        var lastFmUsername = "trickybeta";
+        var lastFmApiKey = "5c14ae46a8579d7c453edf696ce5efed";
+        var listeningText = "♫ Right now I'm listening to ♪";
 
         var locations = [
             {
@@ -171,6 +175,33 @@
                     }
                 };
             }
+
+            $.getJSON("http://ws.audioscrobbler.com/2.0/",
+                {
+                    method: "user.getrecenttracks",
+                    user: lastFmUsername,
+                    api_key: lastFmApiKey,
+                    format: "json",
+                    limit: 1
+                },
+                function(data) {
+                    var track = data["recenttracks"]["track"][0]
+                    console.log(track);
+
+                    var artist = track["artist"]["#text"];
+                    var artistMbid = track["artist"]["mbid"];
+                    var title = track["name"];
+                    var trackUrl = track["url"];
+                    
+                    if (!("date" in track)) {
+                        console.log('Listening now!');
+                        $('.face').append('<p class="bubble-twitter"><strong>' + listeningText + '</strong><br />' + title + ' by ' + artist + '</p>');
+                    } else {
+                        console.log('Not listening right now.');
+                    }
+
+                }
+            );
         });
 
         $('.latitude-popup').click(function() {
@@ -178,11 +209,9 @@
             new Messi(messiHtml, {title: 'Google Latitude', modal: true});
         });
 
-        $('.timeline-data, .face').hover(function() {
-            console.log('hoveron');
+        $('.timeline-data').hover(function() {
             $('.face').addClass('face-hover');
         }, function() {
-            console.log('hoveroff');
             $('.face').removeClass('face-hover');
         });
         

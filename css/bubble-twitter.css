@@ -3,39 +3,31 @@
 ** ============================================================================================================================ */
 
 .bubble-twitter {
-	position:relative;
-	padding:15px;
-	margin:100px 0 0.5em;
-	color:#333;
-	background:#eee;
-	/* css3 */
-	-webkit-border-radius:10px;
-	-moz-border-radius:10px;
-	border-radius:10px;
+    position:relative;
+    padding: 15px;
+    margin-top: 150px;
+    margin-left: -10px;
+    width: 250px;
+    color:#333;
+    background:#eee;
+    /* css3 */
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
 }
 
 .bubble-twitter p {font-size:28px; line-height:1.25em;}
 
 /* this isn't necessary, just saves me having to edit the HTML of the demo */
-.bubble-twitter:before {
-	content:url(twitter-logo.gif);
-	position:absolute;
-	top:-60px;
-	left:0;
-	width:155px;
-	height:36px;
-    /* reduce the damage in FF3.0 */
-    display:block; 
-}
 
 /* creates the triangle */
 .bubble-twitter:after {
-	content:"";
-	position:absolute;
-	top:-30px;
-	left:50px;
-	border:15px solid transparent;
-	border-bottom-color:#eee;
+    content:"";
+    position:absolute;
+    top:-30px;
+    left:50px;
+    border:15px solid transparent;
+    border-bottom-color:#eee;
     /* reduce the damage in FF3.0 */
     display:block; 
     width:0;
