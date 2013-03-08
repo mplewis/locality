@@ -118,11 +118,15 @@ $.getJSON(yahooYqlUrl, {
             user: lastFmUsername,
             api_key: lastFmApiKey,
             format: "json",
-            limit: 1
+            // have to request at least 2 tracks to make sure the data's returned in the same form each time.
+            // if you just request one, sometimes it returns your last track, and sometimes it returns your
+            // last track AND your currently playing track. it's a bit annoying, and there is most likely
+            // a better way to do this but i kinda like the ghetto elegance of this solution. ghettelegant.
+            limit: 2
         },
         function(data) {
             // parse out the cool data i want from the last.fm api. i like you api guys, thanks for the swag api
-            var track = data["recenttracks"]["track"]
+            var track = data["recenttracks"]["track"][0]
 
             var artist = track["artist"]["#text"];
             var artistMbid = track["artist"]["mbid"];
