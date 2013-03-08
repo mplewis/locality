@@ -122,7 +122,7 @@ $.getJSON(yahooYqlUrl, {
         },
         function(data) {
             // parse out the cool data i want from the last.fm api. i like you api guys, thanks for the swag api
-            var track = data["recenttracks"]["track"][0]
+            var track = data["recenttracks"]["track"]
 
             var artist = track["artist"]["#text"];
             var artistMbid = track["artist"]["mbid"];
