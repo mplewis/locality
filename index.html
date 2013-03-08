@@ -194,7 +194,8 @@
                     
                     if (!("date" in track)) {
                         console.log('Listening now!');
-                        $('.face').append('<p class="bubble-twitter"><strong>' + listeningText + '</strong><br />' + title + ' by ' + artist + '</p>');
+                        $('.face').append('<p class="now-playing bubble-twitter" style="display: none;"><strong>' + listeningText + '</strong><br />' + title + ' by ' + artist + '</p>');
+                        $('.now-playing').fadeIn('slow');
                     } else {
                         console.log('Not listening right now.');
                     }
