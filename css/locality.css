@@ -97,7 +97,8 @@ a {
   width: 250px;
   color: #333333;
   background: #dddddd;
-  border-radius: 10px; }
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.5); }
 
 .bubble-twitter p {
   font-size: 28px;
@@ -107,7 +108,7 @@ a {
   content: "";
   position: absolute;
   top: -30px;
-  left: 50px;
+  left: 45px;
   border: 15px solid transparent;
   border-bottom-color: #dddddd;
   display: block;
