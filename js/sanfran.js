@@ -180,4 +180,4 @@ $('.timeline-data').hover(function() {
     $('.face').removeClass('face-hover');
 });
 
-// that's all folks. www.kesdev.com, matt@mplewis.com, @mplewisKesdev and such. <3
+// that's all folks. www.kesdev.com, matt@mplewis.com, @kesdev and such. <3
