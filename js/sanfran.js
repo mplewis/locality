@@ -59,6 +59,7 @@ $.getJSON(yahooYqlUrl, {
         console.log("MATT'S IN SAN FRANCISCO!");
 
         sanFranBox.append('<h1 class="blink rainbowed" style="color: #0f0; margin-top: -40px;"><!--YEAH, WE\'RE GOING THERE--><blink>San Francisco!</blink></h1>');
+        sanFranBox.append('<iframe style="margin-top: 20px;" src="http://latitude.google.com/latitude/apps/badge/api?user=6143439630895179517&type=iframe&maptype=roadmap" width="480" height="400" frameborder="0"></iframe>');
 
     } else {
         
