@@ -27,6 +27,10 @@ function doRainbow() {
 	}
 
     $('.rainbowed').css("color", getColor(start, end, index));
+    $('.rainbow-bordered')
+    	.css("border-style", "outset")
+    	.css("border-width", "10px")
+    	.css("border-color", getColor(start, end, index));
 
 	index = (index+2) % 100;
 }
